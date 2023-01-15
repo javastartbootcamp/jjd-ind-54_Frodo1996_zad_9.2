@@ -1,8 +1,8 @@
-package pl.javastart.task;
+package pl.javastart.task.car;
 
 public class Vehicle {
     private String name;
-    private int fuel;
+    protected int fuel;
     private double averageFuelConsumption;
 
     public Vehicle(String name, int fuel, double averageFuelConsumption) {
@@ -35,16 +35,16 @@ public class Vehicle {
         this.averageFuelConsumption = averageFuelConsumption;
     }
 
-    public double calculateAverageFuelConsumption() {
-        return 0;
-    }
-
     public String getInfo() {
         return "\n\nPojazd: " + name + ", ma " + fuel
                 + " l paliwa w baku";
     }
 
-    public double calculateRange() {
+    protected double calculateFuelConsumption() {
+        return 0;
+    }
+
+    protected double calculateRange() {
         return 0;
     }
 }

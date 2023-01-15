@@ -1,4 +1,4 @@
-package pl.javastart.task;
+package pl.javastart.task.car;
 
 public class Car extends Vehicle {
     private static final double CAR_FUEL_CONSUMPTION_WITH_AC = 0.8;
@@ -18,7 +18,14 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public double calculateAverageFuelConsumption() {
+    public String getInfo() {
+        return super.getInfo() + ". Czy klimatyzacja w aucie jest włączona? " + isAirConditioning()
+                + "\nŚrednie spalanie auta na 100km to: " + calculateFuelConsumption() + " litrów."
+                + "\nZasięg auta to: " + calculateRange() + "km.";
+    }
+
+    @Override
+    protected double calculateFuelConsumption() {
         double avgConsumption = getAverageFuelConsumption();
         if (airConditioning) {
             avgConsumption += CAR_FUEL_CONSUMPTION_WITH_AC;
@@ -27,15 +34,7 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public String getInfo() {
-        return super.getInfo() + ". Czy klimatyzacja w aucie jest włączona? " + isAirConditioning()
-                + "\nŚrednie spalanie auta na 100km to: " + calculateAverageFuelConsumption() + " litrów.";
-    }
-
-    @Override
-    public double calculateRange() {
-        double range = getFuel() / calculateAverageFuelConsumption() * 100;
-        System.out.print("Zasięg auta to: ");
-        return range;
+    protected double calculateRange() {
+        return getFuel() / calculateFuelConsumption() * 100;
     }
 }

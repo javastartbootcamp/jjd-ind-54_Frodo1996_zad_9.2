@@ -1,4 +1,4 @@
-package pl.javastart.task;
+package pl.javastart.task.car;
 
 public class Truck extends Car {
     private static final double ADDITIONAL_FUEL_CONSUMPTION_PER_EVERY_100_KG_WEIGHT = 0.5;
@@ -20,11 +20,13 @@ public class Truck extends Car {
 
     @Override
     public String getInfo() {
-        return super.getInfo() + " Dodatkowe obciążenie tira to: " + loadWeight + " kg";
+        return super.getInfo() + " Dodatkowe obciążenie tira to: " + loadWeight + " kg"
+                + "\nTir spali dodatkowo: " + calculateAdditionalFuelConsumption() + "l, a jego zasięg to: "
+                + calculateRange() + "km.";
     }
 
     @Override
-    public double calculateAverageFuelConsumption() {
+    protected double calculateFuelConsumption() {
         double fuelConsumption = getAverageFuelConsumption() + calculateAdditionalFuelConsumption();
         if (isAirConditioning()) {
             fuelConsumption += TRUCK_FUEL_CONSUMPTION_WITH_AC;
@@ -33,18 +35,17 @@ public class Truck extends Car {
     }
 
     @Override
-    public double calculateRange() {
+    protected double calculateRange() {
         double range;
         if (!isAirConditioning()) {
             range = (getFuel() / (getAverageFuelConsumption() + calculateAdditionalFuelConsumption())) * 100;
         } else {
             range = ((getFuel() / (getAverageFuelConsumption() + TRUCK_FUEL_CONSUMPTION_WITH_AC)) * 100);
         }
-        System.out.print("Tir spali dodatkowo " + calculateAdditionalFuelConsumption() + "l, a jego zasięg to: ");
         return range;
     }
 
-    private double calculateAdditionalFuelConsumption() {
+    protected double calculateAdditionalFuelConsumption() {
         return Math.floor(loadWeight / 100) * ADDITIONAL_FUEL_CONSUMPTION_PER_EVERY_100_KG_WEIGHT;
     }
 }

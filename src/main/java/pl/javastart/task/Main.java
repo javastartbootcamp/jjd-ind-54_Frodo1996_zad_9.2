@@ -1,5 +1,8 @@
 package pl.javastart.task;
 
+import pl.javastart.task.car.Car;
+import pl.javastart.task.car.Truck;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,14 +16,9 @@ public class Main {
         trucks[2] = new Truck("Scania", 150, 14, false, 250);
 
         System.out.println(cars[0].getInfo());
-        System.out.printf("%.2f", cars[0].calculateRange());
         System.out.println(cars[1].getInfo());
-        System.out.printf("%.2f", cars[1].calculateRange());
         System.out.println(trucks[0].getInfo());
-        System.out.printf("%.2f", trucks[0].calculateRange());
         System.out.println(trucks[1].getInfo());
-        System.out.printf("%.2f", trucks[1].calculateRange());
         System.out.println(trucks[2].getInfo());
-        System.out.printf("%.2f", trucks[2].calculateRange());
     }
 }
